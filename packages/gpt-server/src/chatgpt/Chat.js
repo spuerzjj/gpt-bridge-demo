@@ -2,10 +2,13 @@ import OpenAI from 'openai'
 import { SocksProxyAgent } from 'socks-proxy-agent'
 import { Readable } from 'stream'
 
-const openai = new OpenAI({
-	// apiKey: process.env['OPENAI_API_KEY'] // This is the default and can be omitted
-	apiKey: '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'
-})
+let openai
+
+function initOpenAI() {
+	openai = new OpenAI({
+		apiKey: process.env['OPENAI_API_KEY'] // This is the default and can be omitted
+	})
+}
 
 export default class Chat {
 	constructor(id) {
@@ -47,3 +50,5 @@ export default class Chat {
 		this.messages = []
 	}
 }
+
+export { initOpenAI }

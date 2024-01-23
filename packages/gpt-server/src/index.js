@@ -3,6 +3,13 @@ import router from './router/index.js'
 import bodyParser from 'koa-bodyparser'
 import ip from 'ip'
 import cors from 'koa2-cors'
+import { initOpenAI } from './chatgpt/Chat.js'
+import * as dotenv from 'dotenv'
+const pathsDotenv = '.env'
+dotenv.config({ path: `${pathsDotenv}.local` }) // 加载.env.local
+dotenv.config({ path: `${pathsDotenv}` })
+
+initOpenAI()
 
 const app = new Koa()
 app.use(cors())
