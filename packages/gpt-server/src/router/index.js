@@ -17,7 +17,8 @@ router.post('/chat', async (ctx, next) => {
 	}
 
 	ctx.type = 'text/plain'
-	ctx.body = chat.ask(msg)
+	ctx.body = await chat.ask(msg)
+	ctx.status = 200
 })
 
 router.get('/clear', async (ctx, next) => {
