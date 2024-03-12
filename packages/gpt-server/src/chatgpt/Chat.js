@@ -31,7 +31,7 @@ export default class Chat {
 			},
 			{
 				// 使用clash代理转发，否则请求会被墙
-				httpAgent: new SocksProxyAgent('socks://127.0.0.1:7890')
+				httpAgent: new SocksProxyAgent(process.env.SOCKS_PROXY_AGENT)
 			}
 		)
 

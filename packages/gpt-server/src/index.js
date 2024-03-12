@@ -26,7 +26,7 @@ app.use(router.allowedMethods())
 
 const HOST = '0.0.0.0'
 const PORT = 9999
-
+console.log(process.env.SOCKS_PROXY_AGENT)
 app.listen(PORT, HOST, () => {
 	console.log(`app listening on http://localhost:${PORT}`)
 	console.log(`                 http://${ip.address()}:${PORT}`)
