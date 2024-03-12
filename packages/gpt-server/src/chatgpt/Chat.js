@@ -20,9 +20,7 @@ export default class Chat {
 		this.messages.push({ role: 'user', content: msg })
 
 		const s = new Readable({
-			read() {
-				console.log('读我')
-			}
+			read() {}
 		})
 
 		const stream = await openai.chat.completions.create(
@@ -32,6 +30,7 @@ export default class Chat {
 				stream: true
 			},
 			{
+				// 使用clash代理转发，否则请求会被墙
 				httpAgent: new SocksProxyAgent('socks://127.0.0.1:7890')
 			}
 		)
@@ -42,7 +41,6 @@ export default class Chat {
 				const end = chunk.choices[0].finish_reason === 'stop'
 				if (end) {
 					// 结束
-					console.log('结束流')
 					s.push(null)
 				} else {
 					s.push(chunk.choices[0]?.delta?.content || '')
